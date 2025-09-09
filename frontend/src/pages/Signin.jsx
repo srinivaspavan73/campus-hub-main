@@ -8,7 +8,8 @@ import { Eye, EyeOff } from 'lucide-react'; // Import icons for password visibil
 export default function SignIn() {
 
     useEffect(() => {
-        const token = localStorage.getItem('customAuthToken');
+        // const token = localStorage.getItem('customAuthToken');
+        const token = localStorage.getItem('token');
         if (token) {
             navigate('/dashboard');
         }
@@ -25,15 +26,15 @@ export default function SignIn() {
 
     const validateEmail = (email) => {
         const trimmedEmail = email.trim().toLowerCase();
-        const validDomain = '@rguktong.ac.in';
+        const validDomain = '@gmail.com';
 
         if (!trimmedEmail.endsWith(validDomain)) {
-            return { valid: false, message: 'Email must end with @rguktong.ac.in' };
+            return { valid: false, message: 'Email must end with gmail.com' };
         }
 
         const username = trimmedEmail.split('@')[0];
-        if (!username.startsWith('o')) {
-            return { valid: false, message: 'Email must start with letter "o"' };
+        if (!username.startsWith('p')) {
+            return { valid: false, message: 'Email must start with letter "p"' };
         }
 
         return { valid: true, normalizedEmail: trimmedEmail };
@@ -74,7 +75,9 @@ export default function SignIn() {
 
             const { token, user } = response.data;
 
-            localStorage.setItem('customAuthToken', token);
+            // localStorage.setItem('customAuthToken', token);
+            localStorage.setItem('token', token);
+
             setUser(user);
             navigate('/dashboard');
         } catch (err) {
@@ -111,13 +114,13 @@ export default function SignIn() {
                             className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-gray-50 hover:bg-white ${emailError ? 'border-red-500' : 'border-gray-300'}`}
                             value={email}
                             onChange={handleEmailChange}
-                            placeholder="o123456@rguktong.ac.in"
+                            placeholder="pavan@gmail.com"
                             required
                         />
                         {emailError && (
                             <p className="text-red-500 text-xs mt-1">{emailError}</p>
                         )}
-                        <p className="text-gray-500 text-xs mt-1">Email must start with (o) and end with (@rguktong.ac.in) currently only for rgukt students.</p>
+                        <p className="text-gray-500 text-xs mt-1">Email must start with (pavan) and end with (@gmail.com) currently only for gmail students.</p>
                     </div>
                     <div>
                         <div className="flex justify-between items-center mb-1">

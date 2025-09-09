@@ -18,7 +18,8 @@ export default function Dashboard() {
 
     useEffect(() => {
         // Check for the correct token key
-        const token = localStorage.getItem('customAuthToken');
+        // const token = localStorage.getItem('customAuthToken');
+        const token = localStorage.getItem('token');
         if (!token) {
             navigate('/signin');
             return;
@@ -45,7 +46,8 @@ export default function Dashboard() {
 
                 // Handle unauthorized errors (expired token)
                 if (err.response?.status === 401) {
-                    localStorage.removeItem('customAuthToken');
+                    // localStorage.removeItem('customAuthToken');
+                    localStorage.removeItem('token');
                     navigate('/signin');
                 }
             } finally {
@@ -109,7 +111,8 @@ export default function Dashboard() {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('customAuthToken');
+        // localStorage.removeItem('customAuthToken');
+         localStorage.removeItem('token');
         navigate('/');
     };
 
