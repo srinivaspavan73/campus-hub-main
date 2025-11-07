@@ -4,7 +4,7 @@ require('dotenv').config();
 
 // Database Connection
 const sequelize = new Sequelize(
-    process.env.DB_NAME || 'campushub',
+    process.env.DB_NAME || 'CampusHub',
     process.env.DB_USER || 'root',
     process.env.DB_PASSWORD || '',
     {
